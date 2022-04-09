@@ -2,6 +2,9 @@ package santiagofdez.app.ejercicio.model;
 
 import java.util.Date;
 
+import santiagofdez.app.ejercicio.excepciones.OperacionNoValidaException;
+import santiagofdez.app.ejercicio.excepciones.TarjetaNoValidaException;
+import santiagofdez.app.ejercicio.excepciones.TarjetaRepetidaException;
 import santiagofdez.app.ejercicio.interfaz.IOperacionTarjetas;
 
 public class Operacion implements IOperacionTarjetas {
@@ -17,21 +20,28 @@ public class Operacion implements IOperacionTarjetas {
 		this.importe = importe;
 	}
 	
-	public Boolean comprobarValidezOperacion(){
+	@Override
+	public Boolean comprobarValidezOperacion() throws OperacionNoValidaException{
 		Boolean esValida = false;
 		if(this.importe < PRECIO_MAXIMO) {
 			esValida = true;
+			return esValida;
+		}else {
+			throw new OperacionNoValidaException();
 		}
-		return esValida;
 	}
 	
-	public Boolean comprobarValidezTarjeta() {	
+	@Override
+	public Boolean comprobarValidezTarjeta() throws TarjetaNoValidaException{	
 		Boolean esValido = false;
 		
 		if(tarjeta.getfVencimiento().compareTo(fActual) >= 0) {
 	           esValido = true;
-	    }	
-		return esValido;
+	           return esValido;
+	    }else {
+	    	throw new TarjetaNoValidaException();
+	    }
+		
 	}
 
 	@Override
@@ -41,14 +51,13 @@ public class Operacion implements IOperacionTarjetas {
 		return tasa;
 	}
 	
-	public void realizarOperacion() {
+	@Override
+	public void realizarOperacion() throws OperacionNoValidaException, TarjetaNoValidaException {
 		if(comprobarValidezOperacion().equals(Boolean.TRUE) && comprobarValidezTarjeta().equals(Boolean.TRUE)){
-				Double tasa = obtenerTasa(tarjeta, this.importe);
-				System.out.println("Importe operacion: " + this.importe
+				Double tasa = obtenerTasa(tarjeta, importe);
+				System.out.println("Importe operacion: " + importe
 						+ "\nTasa de servicio: " + tasa + "\nTotal: " +
-						(this.importe + tasa));				
-		}else {
-			
+						(importe + tasa) + "\n");				
 		}
 	}
 
@@ -57,13 +66,15 @@ public class Operacion implements IOperacionTarjetas {
 	}
 
 	@Override
-	public Boolean compararTarjetas(TarjetaDeCredito tarjeta) {
+	public Boolean compararTarjetas(TarjetaDeCredito tarjeta) throws TarjetaRepetidaException{
 		Boolean sonIguales = Boolean.FALSE;
 		if(this.tarjeta.equals(tarjeta)) {
-			sonIguales = Boolean.TRUE;
+			throw new TarjetaRepetidaException();			
+		}else {
 			return sonIguales;
+			
 		}
-		return sonIguales;
+		
 	}
 	
 }

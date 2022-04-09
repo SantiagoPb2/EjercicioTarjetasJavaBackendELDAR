@@ -2,9 +2,8 @@ package santiagofdez.app.ejercicio.model;
 
 public class Amex extends Marca{
 	
-	public Amex(String nombre) {
-		super(nombre);
-		// TODO Auto-generated constructor stub
+	public Amex() {
+		super("American Express");
 	}
 
 	@Override

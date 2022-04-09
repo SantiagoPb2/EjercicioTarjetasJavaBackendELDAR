@@ -2,9 +2,8 @@ package santiagofdez.app.ejercicio.model;
 
 public class Visa extends Marca {
 
-	public Visa(String nombre) {
-		super(nombre);
-		
+	public Visa() {
+		super("Visa");
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package santiagofdez.app.ejercicio.main;
 
+import santiagofdez.app.ejercicio.excepciones.OperacionNoValidaException;
+import santiagofdez.app.ejercicio.excepciones.TarjetaNoValidaException;
+import santiagofdez.app.ejercicio.excepciones.TarjetaRepetidaException;
 import santiagofdez.app.ejercicio.helper.FechaVencimiento;
 import santiagofdez.app.ejercicio.helper.Teclado;
 import santiagofdez.app.ejercicio.model.Amex;
@@ -18,16 +21,16 @@ public class Main {
 		final Integer OPCION_DOS = 2;
 		final Integer OPCION_TRES = 3;
 		
-		Marca visa = new Visa("Visa");
-		Marca amex = new Amex("American Express");
-		Marca nara = new Nara("Naranja");
+		Marca visa = new Visa();
+		Marca amex = new Amex();
+		Marca nara = new Nara();
 		
 		TarjetaDeCredito primerTarjeta = new TarjetaDeCredito(visa, 2586246655531999l, 
 				"Santiago Fernandez", FechaVencimiento.crearFechaVencimiento("15/06/2022"));
 		TarjetaDeCredito segundaTarjeta = new TarjetaDeCredito(nara, 5023233344441239l,
 				"Martin Aznar", FechaVencimiento.crearFechaVencimiento("28/08/2022"));
 		TarjetaDeCredito tercerTarjeta = new TarjetaDeCredito(amex, 5023233344441239l,
-				"Carlos Lopes", FechaVencimiento.crearFechaVencimiento("15/04/2022"));
+				"Carlos Lopes", FechaVencimiento.crearFechaVencimiento("08/04/2022"));
 		
 		Operacion primeraCompra = new Operacion(primerTarjeta, 900.0);
 		Operacion segundaCompra = new Operacion(segundaTarjeta, 1100.0);
@@ -62,23 +65,31 @@ public class Main {
 				interfaz.menuOpcionDos();
 				Integer numeroDos = teclado.ingresarInt();
 				if(numeroDos.equals(OPCION_UNO)){
-					if(primeraCompra.comprobarValidezOperacion() == Boolean.TRUE) {
-						System.out.println("La operacion es valida \n");
-					}else {
-						System.out.println("La operacion es invalida \n");
-					}
+						try {
+							if(primeraCompra.comprobarValidezOperacion() == Boolean.TRUE) {
+								System.out.println("La operacion es valida \n");
+							}
+						} catch (OperacionNoValidaException e) {
+							System.out.println("La operacion es invalida \n");
+							
+						}
+					
 				}
 				if(numeroDos.equals(OPCION_DOS)){
-					if(segundaCompra.comprobarValidezOperacion() == Boolean.TRUE) {
-						System.out.println("La operacion es valida \n");
-					}else {
+					try {
+						if(segundaCompra.comprobarValidezOperacion() == Boolean.TRUE) {
+							System.out.println("La operacion es valida \n");
+						}
+					} catch (OperacionNoValidaException e) {
 						System.out.println("La operacion es invalida \n");
 					}
 				}
 				if(numeroDos.equals(OPCION_TRES)){
-					if(tercerCompra.comprobarValidezOperacion() == Boolean.TRUE) {
-						System.out.println("La operacion es valida \n");
-					}else {
+					try {
+						if(tercerCompra.comprobarValidezOperacion() == Boolean.TRUE) {
+							System.out.println("La operacion es valida \n");
+						}
+					} catch (OperacionNoValidaException e) {
 						System.out.println("La operacion es invalida \n");
 					}
 				}
@@ -90,23 +101,29 @@ public class Main {
 				interfaz.menuOpcionTres();
 				Integer numeroTres = teclado.ingresarInt();
 				if(numeroTres.equals(OPCION_UNO)){
-					if(primeraCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
-						System.out.println("La tarjeta es valida \n");
-					}else {
+					try {
+						if(primeraCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
+							System.out.println("La tarjeta es valida \n");
+						}
+					} catch (TarjetaNoValidaException e) {
 						System.out.println("La tarjeta es invalida \n");
 					}
 				}
 				if(numeroTres.equals(OPCION_DOS)){
-					if(segundaCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
-						System.out.println("La tarjeta es valida \n");
-					}else {
+					try {
+						if(segundaCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
+							System.out.println("La tarjeta es valida \n");
+						}
+					} catch (TarjetaNoValidaException e) {
 						System.out.println("La tarjeta es invalida \n");
 					}
 				}
 				if(numeroTres.equals(OPCION_TRES)){
-					if(tercerCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
-						System.out.println("La tarjeta es valida \n");
-					}else {
+					try {
+						if(tercerCompra.comprobarValidezTarjeta() == Boolean.TRUE) {
+							System.out.println("La tarjeta es valida \n");
+						}
+					} catch (TarjetaNoValidaException e) {
 						System.out.println("La tarjeta es invalida \n");
 					}
 				}
@@ -118,24 +135,30 @@ public class Main {
 				interfaz.menuOpcionCuatro();
 				Integer numeroCuatro = teclado.ingresarInt();
 				if(numeroCuatro.equals(OPCION_UNO)){
-					if(primeraCompra.compararTarjetas(segundaTarjeta) == Boolean.TRUE) {
+					try {
+						if(primeraCompra.compararTarjetas(segundaTarjeta) == Boolean.FALSE) {
+							System.out.println("Las tarjetas son distintas \n");
+						}
+					} catch (TarjetaRepetidaException e) {
 						System.out.println("Las tarjetas son iguales \n");
-					}else {
-						System.out.println("Las tarjetas son distintas \n");
 					}
 				}
 				if(numeroCuatro.equals(OPCION_DOS)){
-					if(tercerCompra.compararTarjetas(primerTarjeta) == Boolean.TRUE) {
+					try {
+						if(tercerCompra.compararTarjetas(primerTarjeta) == Boolean.FALSE) {
+							System.out.println("Las tarjetas son distintas \n");
+						}
+					} catch (TarjetaRepetidaException e) {
 						System.out.println("Las tarjetas son iguales \n");
-					}else {
-						System.out.println("Las tarjetas son distintas \n");
 					}
 				}
 				if(numeroCuatro.equals(OPCION_TRES)){
-					if(segundaCompra.compararTarjetas(tercerTarjeta) == Boolean.TRUE) {
+					try {
+						if(segundaCompra.compararTarjetas(tercerTarjeta) == Boolean.FALSE) {
+							System.out.println("Las tarjetas son distintas \n");
+						}
+					} catch (TarjetaRepetidaException e) {
 						System.out.println("Las tarjetas son iguales \n");
-					}else {
-						System.out.println("Las tarjetas son distintas \n");
 					}
 				}
 				if(numeroCuatro.equals(OPCION_CERO)){
@@ -163,22 +186,33 @@ public class Main {
 				interfaz.menuOpcionSeis();
 				Integer numeroSeis = teclado.ingresarInt();
 				if(numeroSeis.equals(OPCION_UNO)){
-					primeraCompra.realizarOperacion();
+						try {
+							primeraCompra.realizarOperacion();
+						} catch (OperacionNoValidaException | TarjetaNoValidaException e) {
+							System.out.println("Operacion no valida, "
+									+ "puede que el monto maximo se haya superado o que la tarjeta sea invalida \n");
+						}							
 				}
 				if(numeroSeis.equals(OPCION_DOS)){
-					segundaCompra.realizarOperacion();
+					try {
+						segundaCompra.realizarOperacion();
+					} catch (OperacionNoValidaException | TarjetaNoValidaException e) {
+						System.out.println("Operacion no valida, "
+								+ "puede que el monto maximo se haya superado o que la tarjeta sea invalida \n");
+					}
 				}
 				if(numeroSeis.equals(OPCION_TRES)){
-					tercerCompra.realizarOperacion();
+					try {
+						tercerCompra.realizarOperacion();
+					} catch (OperacionNoValidaException | TarjetaNoValidaException e) {
+						System.out.println("Operacion no valida, "
+								+ "puede que el monto maximo se haya superado o que la tarjeta sea invalida \n");
+					}
 				}
 				if(numeroSeis.equals(OPCION_CERO)){
 					System.out.println("Volviendo al menu principal \n");
 				}					
-				break;
-			case 0:
-				System.out.println("\nCerrando menu");
-				break;
-				
+				break;			
 			default:
 				System.out.println("Seleccione una opcion dentro del menu");
 				System.out.println();

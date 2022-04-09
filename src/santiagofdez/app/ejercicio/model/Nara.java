@@ -2,9 +2,8 @@ package santiagofdez.app.ejercicio.model;
 
 public class Nara extends Marca{
 
-	public Nara(String nombre) {
-		super(nombre);
-		// TODO Auto-generated constructor stub
+	public Nara() {
+		super("Naranja");
 	}
 
 	@Override

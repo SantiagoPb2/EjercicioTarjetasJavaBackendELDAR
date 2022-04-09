@@ -57,7 +57,7 @@ public class Operacion implements IOperacionTarjetas {
 				Double tasa = obtenerTasa(tarjeta, importe);
 				System.out.println("Importe operacion: " + importe
 						+ "\nTasa de servicio: " + tasa + "\nTotal: " +
-						(importe + tasa) + "\n");				
+						(importe + tasa) + ".\n");				
 		}
 	}
 

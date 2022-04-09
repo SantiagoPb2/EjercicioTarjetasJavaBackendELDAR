@@ -41,7 +41,7 @@ public class Operacion implements IOperacionTarjetas {
 		return tasa;
 	}
 	
-	public void realizarOperacion(TarjetaDeCredito tarjeta) {
+	public void realizarOperacion() {
 		if(comprobarValidezOperacion().equals(Boolean.TRUE) && comprobarValidezTarjeta().equals(Boolean.TRUE)){
 				Double tasa = obtenerTasa(tarjeta, this.importe);
 				System.out.println("Importe operacion: " + this.importe
@@ -57,11 +57,13 @@ public class Operacion implements IOperacionTarjetas {
 	}
 
 	@Override
-	public String compararTarjetas(TarjetaDeCredito tarjeta1, TarjetaDeCredito tarjeta2) {
-		if(tarjeta1.equals(tarjeta2)) {
-			return "Las tarjetas son iguales";
+	public Boolean compararTarjetas(TarjetaDeCredito tarjeta) {
+		Boolean sonIguales = Boolean.FALSE;
+		if(this.tarjeta.equals(tarjeta)) {
+			sonIguales = Boolean.TRUE;
+			return sonIguales;
 		}
-		return "Las tarjetas son distintas";
+		return sonIguales;
 	}
 	
 }

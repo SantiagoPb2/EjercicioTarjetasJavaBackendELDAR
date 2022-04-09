@@ -11,7 +11,7 @@ public interface IOperacionTarjetas {
 	public Boolean comprobarValidezTarjeta();
 	
 	//Identificar si una tarjeta es distinta a otra
-	public String compararTarjetas(TarjetaDeCredito tarjeta1, TarjetaDeCredito tarjeta2);
+	public Boolean compararTarjetas(TarjetaDeCredito tarjeta);
 	
 	//Obtener por medio de un método la tasa de una operación informando marca e importe
 	public Double obtenerTasa(TarjetaDeCredito tarjeta, Double importe);

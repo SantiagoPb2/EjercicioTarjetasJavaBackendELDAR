@@ -12,7 +12,7 @@ import santiagofdez.app.ejercicio.presentacion.InterfazMenu;
 
 public class Main {
 		
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		final Integer OPCION_CERO = 0;
 		final Integer OPCION_UNO = 1;
 		final Integer OPCION_DOS = 2;
@@ -37,6 +37,7 @@ public class Main {
 		Teclado teclado = new Teclado();
 		
 		interfaz.menuPrincipal();
+
 		Integer opcion = teclado.ingresarInt();
 		while(opcion != OPCION_CERO) {
 			switch(opcion) {
@@ -173,6 +174,9 @@ public class Main {
 				if(numeroSeis.equals(OPCION_CERO)){
 					System.out.println("Volviendo al menu principal \n");
 				}					
+				break;
+			case 0:
+				System.out.println("\nCerrando menu");
 				break;
 				
 			default:

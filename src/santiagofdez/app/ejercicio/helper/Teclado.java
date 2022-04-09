@@ -4,19 +4,20 @@ import java.util.Scanner;
 
 public class Teclado {
 	
-	public String ingresarTexto() {
-		Scanner teclado2 = new Scanner(System.in);
-		return teclado2.nextLine();
-	}
+	public int ingresarInt(){
+           
+        int numero=0;
+        Scanner scanner= new Scanner(System.in);
+        do{
+            
+            while(!scanner.hasNextInt()){  
+                System.out.println("¡Esto no es un numero VALIDO! Ingrese nuevamente");  
+            } 
+            numero=scanner.nextInt();
+         
+        }while(numero < 0);
+        
+        return numero;
+    }
 	
-	public int ingresarInt() {
-		Scanner teclado = new Scanner(System.in);
-		return teclado.nextInt();
-	}
-	
-	public double ingresarDouble() {
-		Scanner teclado1 = new Scanner(System.in);
-		return teclado1.nextDouble();
-	}
-
 }

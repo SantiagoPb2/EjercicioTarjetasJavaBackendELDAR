@@ -3,7 +3,7 @@ package santiagofdez.app.ejercicio.model;
 public class Amex extends Marca{
 	
 	public Amex() {
-		super("American Express");
+		super("AmericanExpress");
 	}
 
 	@Override

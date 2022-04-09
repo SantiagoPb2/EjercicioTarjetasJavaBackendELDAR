@@ -18,34 +18,34 @@ public class Main {
 		while(opcion != 0) {
 			switch(opcion) {
 			case 1:
-				interfazMenuPrincipal.menuOpcionUno();
+				interfazMenuPrincipal.menuInformacionTarjeta();
 				Integer numero = teclado.ingresarInt();
 				controladorMenu.controladorInfoTarjeta(numero);	
 				break;
 			
 			case 2:
-				interfazMenuPrincipal.menuOpcionDos();
+				interfazMenuPrincipal.menuValidezOperacion();
 				Integer numeroDos = teclado.ingresarInt();
 				controladorMenu.controladorValidezOperacion(numeroDos);	
 				break;
 			case 3:
-				interfazMenuPrincipal.menuOpcionTres();
+				interfazMenuPrincipal.menuValidezTarjeta();
 				Integer numeroTres = teclado.ingresarInt();
 				controladorMenu.controladorValidezTarjeta(numeroTres);	
 				break;
 			case 4:
-				interfazMenuPrincipal.menuOpcionCuatro();
+				interfazMenuPrincipal.menuComparacionTarjetas();
 				Integer numeroCuatro = teclado.ingresarInt();
-				controladorMenu.controladorComparativaTarjeta(numeroCuatro);		
+				controladorMenu.controladorComparativaTarjeta(numeroCuatro);
 				break;
 			case 5:
-				interfazMenuPrincipal.menuOpcionCinco();
+				interfazMenuPrincipal.menuObtenerTasaServicio();
 				Integer numeroCinco = teclado.ingresarInt();
 				controladorMenu.controladorTasaServicio(numeroCinco);			
 				break;
 				
 			case 6:
-				interfazMenuPrincipal.menuOpcionSeis();
+				interfazMenuPrincipal.menuRealizarOperacion();
 				Integer numeroSeis = teclado.ingresarInt();
 				controladorMenu.controladorRealizacionOperacion(numeroSeis);				
 				break;			

@@ -10,5 +10,5 @@ Sistema que permite al usuario realizar las siguientes tareas:
 -Obtener por medio de un método la tasa de una operación informando marca e importe.
 -Realizar una operacion de compra (validando antes si es posible).
 
-##DATOS ADICIONALES
+## DATOS ADICIONALES
 No es un menu para realizar cargas de tarjetas u operaciones, ambos ya estan precargados en el sistema.
